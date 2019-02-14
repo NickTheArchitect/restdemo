@@ -15,5 +15,14 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:3.2.1'
+
+	// We need a database, for now just use H2
+	runtime 'com.h2database:h2'
+	// Also add support for mysql and choose at runtime
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	runtime group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
