@@ -1,3 +1,31 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+		camundaSpringBootStarterVersion = '3.2.1'
+		camundaVersion = '7.10.0'
+		camundaSpinVersion = '1.6.5'
+		camelVersion = '2.23.1'
+		groovyVersion = '2.5.5'
+		spockVersion = '1.2-groovy-2.5'
+	}
+	repositories {
+		mavenLocal()
+		maven {
+			// Pick up camunda bits from Camunda in preference to the versions on Maven central.
+			url 'https://app.camunda.com/nexus/content/repositories/camunda-bpm/'
+		}
+		mavenCentral()
+		maven {
+			url 'https://ci1.carlsonwagonlit.com/nexus/repository/CBR_Releases/'
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
+	}
+
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.1.2.RELEASE'
 	id 'java'
@@ -10,14 +38,24 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+	mavenLocal()
 	mavenCentral()
+	maven {
+		url 'https://ci1.carlsonwagonlit.com/nexus/repository/CBR_Releases/'
+	}
+}
+
+ext {
+	springCloudVersion = 'Greenwich.RELEASE'
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:3.2.1'
-	implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:3.2.1'
+	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:${camundaSpringBootStarterVersion}"){
+		exclude group: 'org.camunda.bpm.springboot', module: 'camunda-bpm-spring-boot-starter-test'
+	}
+	implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camundaSpringBootStarterVersion}"
 
 	// We need a database, for now just use H2
 	runtime 'com.h2database:h2'
