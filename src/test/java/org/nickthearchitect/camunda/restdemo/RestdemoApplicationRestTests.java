@@ -18,14 +18,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@AutoConfigureMockMvc
 public class RestdemoApplicationRestTests {
 
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-
-	@Autowired
-	private MockMvc mvc;
 
 	@Test
 	public void restApiIsAvailable() throws Exception {
