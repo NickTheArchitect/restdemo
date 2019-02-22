@@ -5,3 +5,7 @@ camunda.bpm:
     id: kermit
     password: superSecret
     firstName: Kermit
+camel.dataformat:
+  json-jackson:
+    useList: true
+

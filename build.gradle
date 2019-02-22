@@ -63,6 +63,12 @@ dependencies {
 	implementation "org.camunda.spin:camunda-spin-dataformat-json-jackson:${camundaSpinVersion}"
 	implementation "org.camunda.spin:camunda-spin-dataformat-xml-dom:${camundaSpinVersion}"
 	implementation "org.camunda.bpm:camunda-engine-plugin-spin:${camundaVersion}"
+	// Everyone needs a Camel
+	implementation 'org.camunda.bpm.extension.camel:camunda-bpm-camel-spring:0.5'
+	implementation "org.apache.camel:camel-spring-boot-starter:${camelVersion}"
+	implementation "org.apache.camel:camel-http4:${camelVersion}"
+	implementation "org.apache.camel:camel-jackson-starter:${camelVersion}"
+	implementation "org.apache.camel:camel-jackson:${camelVersion}"
 
 	// We need a database, for now just use H2
 	runtime 'com.h2database:h2'
