@@ -58,6 +58,11 @@ dependencies {
 		exclude group: 'org.camunda.bpm.springboot', module: 'camunda-bpm-spring-boot-starter-test'
 	}
 	implementation "org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:${camundaSpringBootStarterVersion}"
+	// Take Camunda SPIN for a spin
+	implementation "org.camunda.spin:camunda-spin-core:${camundaSpinVersion}"
+	implementation "org.camunda.spin:camunda-spin-dataformat-json-jackson:${camundaSpinVersion}"
+	implementation "org.camunda.spin:camunda-spin-dataformat-xml-dom:${camundaSpinVersion}"
+	implementation "org.camunda.bpm:camunda-engine-plugin-spin:${camundaVersion}"
 
 	// We need a database, for now just use H2
 	runtime 'com.h2database:h2'
